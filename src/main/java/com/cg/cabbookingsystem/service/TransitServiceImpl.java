@@ -53,7 +53,6 @@ public class TransitServiceImpl implements TransitService {
 	public Booking rateTrip(Booking booking) throws InvalidBookingException {
 		booking.setTripStatus("Rated");
 		Driver driver = updateDriverRating(booking);
-		System.out.println(driver.getRating());
 		Vehicle vehicle = updateVehicleStatus(booking, driver);
 		double finalFare = finalFareGeneration(booking, vehicle);
 		booking.setFinalFare(finalFare);
