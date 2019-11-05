@@ -2,6 +2,7 @@ package com.cg.cabbookingsystem.dto;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -11,11 +12,15 @@ public class Driver {
 	
 	@Id
 	private int id;
+	@Column(length = 15)
 	private String name;
 	private Date dob;
+	@Column(length = 15)
 	private String gender;
 	private long contactNo;
+	@Column(length = 15)
 	private String address;
+	@Column(length = 15)
 	private String vehicleNo;
 	private double rating;
 	private int numberOfTrips;

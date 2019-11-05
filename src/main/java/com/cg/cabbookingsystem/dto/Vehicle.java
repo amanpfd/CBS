@@ -1,5 +1,6 @@
 package com.cg.cabbookingsystem.dto;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -9,8 +10,11 @@ public class Vehicle {
 	@Id
 	private String vehicleNo;
 	private int vehicleSize;
+	@Column(length = 15)
 	private String model;
+	@Column(length = 15)
 	private String status;
+	@Column(length = 15)
 	private String location;
 	
 	public String getVehicleNo() {

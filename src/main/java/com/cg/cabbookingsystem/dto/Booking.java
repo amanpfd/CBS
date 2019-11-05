@@ -1,5 +1,6 @@
 package com.cg.cabbookingsystem.dto;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -8,8 +9,11 @@ public class Booking {
 
 	@Id
 	private int bookingId;
+	@Column(length = 15)
 	private String source;
+	@Column(length = 15)
 	private String destination;
+	@Column(length = 15)
 	private String tripStatus;
 	private double estimatedFare;
 	private double finalFare;

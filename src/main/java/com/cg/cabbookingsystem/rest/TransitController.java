@@ -32,13 +32,19 @@ public class TransitController {
 	}
 	
 	@PostMapping(value = "/endTrip", consumes = "application/json", produces = "application/json")
-	public Booking endTrip(@Valid @RequestBody Booking booking) throws InvalidBookingException {
+	public Booking endTrip(@Valid @RequestBody Booking booking){
 		return transitService.endTrip(booking);
+	}
+	
+	@PostMapping(value = "/rateTrip", consumes = "application/json", produces = "application/json")
+	public Booking rateTrip(@Valid @RequestBody Booking booking) throws InvalidBookingException {
+		return transitService.rateTrip(booking);
 	}
 	
 	@GetMapping(value = "/book", produces = "application/json")
 	public Booking dummyBooking(){
-		return new Booking(123, "andheri", "marol", "Confirmed", 200, 0, 10, 1000, 12, 0, 0);
+//		return new Booking(123, "andheri", "marol", "Confirmed", 200, 0, 10, 1000, 12, 0, 0);
+		return transitService.getBooking();
 	}
 	
 	@GetMapping(value = "/driver/{id}", produces = "application/json")

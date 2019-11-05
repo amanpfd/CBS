@@ -44,9 +44,16 @@ public class TransitServiceImpl implements TransitService {
 	}
 
 	@Override
-	public Booking endTrip(Booking booking) throws InvalidBookingException {
+	public Booking endTrip(Booking booking) {
 		booking.setTripStatus("Completed");
+		return bookingRepo.save(booking);
+	}
+
+	@Override
+	public Booking rateTrip(Booking booking) throws InvalidBookingException {
+		booking.setTripStatus("Rated");
 		Driver driver = updateDriverRating(booking);
+		System.out.println(driver.getRating());
 		Vehicle vehicle = updateVehicleStatus(booking, driver);
 		double finalFare = finalFareGeneration(booking, vehicle);
 		booking.setFinalFare(finalFare);
@@ -65,12 +72,13 @@ public class TransitServiceImpl implements TransitService {
 			throw new InvalidBookingException("No Driver with id " + driverId);
 
 		int numberOfTrips = driver.getNumberOfTrips();
-		driver.setNumberOfTrips(++numberOfTrips);
+		numberOfTrips+=1;
+		driver.setNumberOfTrips(numberOfTrips);
 		double rating = driver.getRating();
 		rating = rating + (booking.getRating() - rating) / numberOfTrips;
 		rating = (rating < 0) ? 0 : rating;
 		driver.setRating(rating);
-		return driverRepo.save(driver);
+		return driverRepo.saveAndFlush(driver);
 	}
 
 	@Override
@@ -86,7 +94,7 @@ public class TransitServiceImpl implements TransitService {
 
 		vehicle.setLocation(booking.getDestination());
 		vehicle.setStatus("Free");
-		return vehicleRepo.save(vehicle);
+		return vehicleRepo.saveAndFlush(vehicle);
 	}
 
 	@Override
@@ -101,5 +109,10 @@ public class TransitServiceImpl implements TransitService {
 		double extraFare = price.getWaitingChargePerMin() * (booking.getFinalTime() - booking.getEstimatedTime());
 		extraFare = (extraFare < 0) ? 0 : extraFare;
 		return booking.getEstimatedFare() + extraFare;
+	}
+
+	@Override
+	public Booking getBooking() {
+		return bookingRepo.findById(123).get();
 	}
 }

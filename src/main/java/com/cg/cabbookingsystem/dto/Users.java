@@ -1,14 +1,17 @@
 package com.cg.cabbookingsystem.dto;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class User2 {
+public class Users {
 
 	@Id
 	private String email;
+	@Column(length = 15)
 	private String password;
+	@Column(length = 15)
 	private String role;
 	
 	public String getEmail() {

@@ -9,12 +9,16 @@ public interface TransitService {
 
 	Booking startTrip(Booking booking);
 
-	Booking endTrip(Booking booking) throws InvalidBookingException;
+	Booking endTrip(Booking booking);
 
 	Driver updateDriverRating(Booking booking) throws InvalidBookingException;
 
 	Vehicle updateVehicleStatus(Booking booking, Driver driver) throws InvalidBookingException;
 
 	double finalFareGeneration(Booking booking, Vehicle vehicle) throws InvalidBookingException;
+
+	Booking getBooking();
+
+	Booking rateTrip(Booking booking) throws InvalidBookingException;
 
 }
