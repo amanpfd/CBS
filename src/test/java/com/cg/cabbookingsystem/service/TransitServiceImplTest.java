@@ -15,6 +15,7 @@ import com.cg.cabbookingsystem.dto.Booking;
 import com.cg.cabbookingsystem.dto.Driver;
 import com.cg.cabbookingsystem.dto.Vehicle;
 import com.cg.cabbookingsystem.exception.InvalidBookingException;
+import com.cg.cabbookingsystem.repo.BookingRepo;
 
 /**
  * @author Aman Dungarwal
@@ -27,16 +28,25 @@ public class TransitServiceImplTest {
 	@Autowired
 	TransitService transitService;
 
-	/**
-	 * Test method for
-	 * {@link com.cg.cabbookingsystem.service.TransitServiceImpl#startTrip(com.cg.cabbookingsystem.dto.Booking)}.
-	 */
+	@Autowired
+	BookingRepo repo;
+	
 	@Test
 	public void testStartTrip() {
-		Booking booking = new Booking();
-		booking = transitService.startTrip(booking);
-		assertEquals("Started", booking.getTripStatus());
+		Booking booking = new Booking(124,"andheri","sakinaka","Completed",200,0,10,1000,15,20,5);
+	repo.save(booking);
 	}
+	
+//	/**
+//	 * Test method for
+//	 * {@link com.cg.cabbookingsystem.service.TransitServiceImpl#startTrip(com.cg.cabbookingsystem.dto.Booking)}.
+//	 */
+//	@Test
+//	public void testStartTrip() {
+//		Booking booking = new Booking();
+//		booking = transitService.startTrip(booking);
+//		assertEquals("Started", booking.getTripStatus());
+//	}
 
 	/**
 	 * Test method for

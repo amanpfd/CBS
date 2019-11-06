@@ -17,6 +17,17 @@ public class Vehicle {
 	@Column(length = 15)
 	private String location;
 	
+	public Vehicle() {
+	}
+	
+	public Vehicle(String vehicleNo, int vehicleSize, String model, String status, String location) {
+		this.vehicleNo = vehicleNo;
+		this.vehicleSize = vehicleSize;
+		this.model = model;
+		this.status = status;
+		this.location = location;
+	}
+
 	public String getVehicleNo() {
 		return vehicleNo;
 	}

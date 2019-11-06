@@ -10,6 +10,15 @@ public class Price {
 	private int vehicleSize;
 	private double ratePerKM;
 	private double waitingChargePerMin;
+	
+	public Price() {
+	}
+
+	public Price(int vehicleSize, double ratePerKM, double waitingChargePerMin) {
+		this.vehicleSize = vehicleSize;
+		this.ratePerKM = ratePerKM;
+		this.waitingChargePerMin = waitingChargePerMin;
+	}
 
 	public int getVehicleSize() {
 		return vehicleSize;

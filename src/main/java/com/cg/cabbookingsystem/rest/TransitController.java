@@ -49,6 +49,8 @@ public class TransitController {
 	
 	@GetMapping(value = "/driver/{id}", produces = "application/json")
 	public Driver getdriver(@PathVariable int id) {
+//		Price booking = new Price(1,10,3);
+//		Vehicle booking1 = new Vehicle("MH12",1,"Honda","Busy","andheri");
 		return new Driver(id, "rahul", new Date(), "male", 9876543210L, "asalpha", "MH12", 4.82, 12);
 	}
 }
