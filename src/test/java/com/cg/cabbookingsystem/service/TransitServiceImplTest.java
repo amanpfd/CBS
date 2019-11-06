@@ -48,18 +48,55 @@ public class TransitServiceImplTest {
 	public void testEndTrip() throws InvalidBookingException {
 		Booking booking = new Booking();
 		booking = transitService.endTrip(booking);
-		Booking expectedBooking = new Booking();
-		assertEquals(expectedBooking, booking);
+		assertEquals("Completed", booking.getTripStatus());
 	}
-
+	
 	/**
 	 * Test method for
-	 * {@link com.cg.cabbookingsystem.service.TransitServiceImpl#endTrip(com.cg.cabbookingsystem.dto.Booking)}.
+	 * {@link com.cg.cabbookingsystem.service.TransitServiceImpl#rateTrip(com.cg.cabbookingsystem.dto.Booking)}.
+	 * 
+	 * @throws InvalidBookingException
+	 */
+	@Test
+	public void testRateTripStatus() throws InvalidBookingException {
+		Booking booking = new Booking();
+		booking = transitService.endTrip(booking);
+		assertEquals("Rated", booking.getTripStatus());
+	}
+	
+	/**
+	 * Test method for
+	 * {@link com.cg.cabbookingsystem.service.TransitServiceImpl#rateTrip(com.cg.cabbookingsystem.dto.Booking)}.
+	 * 
+	 * @throws InvalidBookingException
+	 */
+	@Test
+	public void testRateTrip() throws InvalidBookingException {
+		Booking booking = new Booking(124,"andheri","sakinaka","Completed",200,0,10,1000,15,20,5);
+//		"bookingId": 124,
+//	    "source": "andheri",
+//	    "destination": "sakinaka",
+//	    "tripStatus": "Completed",
+//	    "estimatedFare": 200.0,
+//	    "finalFare": 0.0,
+//	    "driverId": 10,
+//	    "customerId": 1000,
+//	    "estimatedTime": 15,
+//	    "finalTime": 20,
+//	    "rating": 5
+		booking = transitService.endTrip(booking);
+		Booking expectedBooking = new Booking(124,"andheri","sakinaka","Rated",200,250,10,1000,15,20,5);
+		assertEquals(expectedBooking, booking);
+	}
+	
+	/**
+	 * Test method for
+	 * {@link com.cg.cabbookingsystem.service.TransitServiceImpl#rndTrip(com.cg.cabbookingsystem.dto.Booking)}.
 	 * 
 	 * @throws InvalidBookingException
 	 */
 	@Test(expected = InvalidBookingException.class)
-	public void testEndTripNegative() throws InvalidBookingException {
+	public void testRateTripNegative() throws InvalidBookingException {
 		Booking booking = new Booking();
 		booking = transitService.endTrip(booking);
 		Booking expectedBooking = new Booking();
